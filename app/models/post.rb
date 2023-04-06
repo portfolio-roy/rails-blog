@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   has_many :likes
 
   def update_posts_likes_counter
-    user.increment!(:posts_count)
+    author.increment!(:posts_count)
   end
 
   def most_recent_comments
