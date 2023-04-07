@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Post, type: :model do
   describe 'Validations' do
-    first_user = User.create(name: 'Prantosh', photo: 'https://avatars.githubusercontent.com/u/93311467?v=4',
+    first_user = User.create(name: 'tom', photo: 'https://avatars.githubusercontent.com/u/93311467?v=4',
                              bio: 'Full-Stack Developer', posts_counter: 1)
     first_post = Post.create(title: 'First Post', text: 'This is my first post', author_id: first_user.id,
                              comments_counter: 0, likes_counter: 0)
@@ -39,6 +39,17 @@ RSpec.describe Post, type: :model do
     it 'comments_counter should be an integer' do
       subject.comments_counter = 1.5
       expect(subject).to_not be_valid
+    end
+  end
+  describe '#update_posts_counter' do
+    it 'should update posts_counter' do
+      first_user = User.create(name: 'tom', photo: 'https://avatars.githubusercontent.com/u/93311467?v=4',
+                               bio: 'Full-Stack Developer', posts_counter: 1)
+      # rubocop:disable Lint/UselessAssignment
+      first_post = Post.create(title: 'First Post', text: 'This is my first post', author_id: first_user.id,
+                               comments_counter: 0, likes_counter: 0)
+      # rubocop:enable Lint/UselessAssignment
+      expect(first_user.posts_counter).to eq 1
     end
   end
 end

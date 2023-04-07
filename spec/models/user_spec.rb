@@ -25,4 +25,17 @@ RSpec.describe User, type: :model do
       expect(subject).to_not be_valid
     end
   end
+  describe '#most_recent_posts' do
+    it 'should return the most recent posts' do
+      first_user = User.create(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo',
+                               bio: 'Teacher from Mexico.', posts_counter: 0)
+      first_post = Post.create(title: 'First Post', text: 'This is my first post', author_id: first_user.id,
+                               comments_counter: 0, likes_counter: 0)
+      second_post = Post.create(title: 'Second Post', text: 'This is my second post', author_id: first_user.id,
+                                comments_counter: 0, likes_counter: 0)
+      third_post = Post.create(title: 'Third Post', text: 'This is my third post', author_id: first_user.id,
+                               comments_counter: 0, likes_counter: 0)
+      expect(first_user.most_recent_posts).to eq [third_post, second_post, first_post]
+    end
+  end
 end

@@ -22,4 +22,16 @@ os/F_-0BxGuVvo', bio: 'Teacher from Mexico.', posts_counter: 0)
       expect(first_post.likes_counter).to eq 0
     end
   end
+  describe '#update_posts_like_counter' do
+    it 'should update the posts like counter' do
+      first_user = User.create(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo',
+                               bio: 'Teacher from Mexico.', posts_counter: 0)
+      first_post = Post.create(author: first_user, title: 'Hello', text: 'This is my first post', comments_counter: 0,
+                               likes_counter: 0)
+      # rubocop:disable Lint/UselessAssignment
+      first_like = Like.create(author: first_user, post: first_post)
+      # rubocop:enable Lint/UselessAssignment
+      expect(first_post.likes_counter).to eq 1
+    end
+  end
 end
