@@ -1,7 +1,38 @@
 require 'rails_helper'
 
-RSpec.describe 'Users', type: :request do
-  describe 'GET /index' do
-    pending "add some examples (or delete) #{__FILE__}"
+# we group together our users tests
+RSpec.describe '/users', type: :request do
+  context 'GET /index' do
+    it 'renders a successful response' do
+      get users_url
+      expect(response).to be_successful
+    end
+
+    it 'renders the correct template' do
+      get users_url
+      expect(response).to render_template('index')
+    end
+
+    it 'includes correct placeholder text' do
+      get users_url
+      expect(response.body).to include('<h1>All Users</h1>')
+    end
+  end
+
+  context 'GET /show' do
+    it 'renders a successful response' do
+      get users_url(1)
+      expect(response).to be_successful
+    end
+
+    it 'renders the correct template' do
+      get user_url(1)
+      expect(response).to render_template('show')
+    end
+
+    it 'includes correct placeholder text' do
+      get user_url(1)
+      expect(response.body).to include('<h1>Show a single user with a given ID</h1>')
+    end
   end
 end
