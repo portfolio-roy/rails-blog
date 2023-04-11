@@ -1,1 +1,29 @@
-<h1>Show a single post from the given user</h1>
+<main>
+    <div class="single-post container">
+        <header class="post-header">
+        <h1 id="post-title">
+            <%= @post.title%> by <%= @post.author.name%>
+        </h1>
+        <div class="post-meta">
+            <span>Comments: <%= @post.comments_counter%>, </span>
+            <span class="likes">Likes:<%= @post.likes_counter%></span>
+        </div>
+        </header>
+        <hr>
+        <div class="post-body">
+        <%= @post.text%>
+        </div>
+        <hr style="width:66%; min-width: 300px;">
+        <footer class="post-footer">
+        <div class="comments">
+                <h5>Comments</h5>
+                <% @comments=Post.find(@post.id).comments %>
+                    <% @comments.each do |comment| %>
+                        <div  id="single-comment">
+                            <span> <%= comment.author.name %> : <%= comment.text %></span>
+                        </div>
+                    <% end %>
+            </div>
+        </footer>
+    </div>
+</main>
