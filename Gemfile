@@ -28,6 +28,7 @@ gem 'stimulus-rails'
 gem 'jbuilder'
 gem 'rails-controller-testing'
 gem 'rubocop'
+gem 'sass-rails'
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
