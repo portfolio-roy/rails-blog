@@ -87,10 +87,20 @@ main {
   margin: 16px 2px;
   cursor: pointer;
   border-radius: 8px;
-  align-self: center;
   transition: 500ms ease;
   &:hover {
     background-color: #333;
+  }
+}
+
+.comment-form,
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+  .button {
+    align-self: flex-end;
   }
 }
 
@@ -118,9 +128,24 @@ main {
     text-align: right;
   }
 }
+.post-interactions {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  .button {
+    padding: 8px 16px;
+    line-height: 1;
+  }
+}
 hr {
   border-color: rgb(23, 23, 23);
   background: rgb(23, 23, 23);
   width: 100%;
   align-self: center;
+}
+
+.single-user {
+  .button {
+    align-self: center;
+  }
 }
