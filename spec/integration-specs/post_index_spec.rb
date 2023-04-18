@@ -47,5 +47,15 @@ RSpec.describe 'Post index page', type: :feature do
       expect(page).to have_content("Comments: #{first_post.comments_counter}")
       expect(page).to have_content("Comments: #{second_post.comments_counter}")
     end
+    it 'should display like counts for each post' do
+      expect(page).to have_content("Likes: #{first_post.likes_counter}")
+    end
+    it 'sould go to the post show page when clicking on the post title' do
+      click_link(first_post.title)
+      expect(page).to have_current_path(user_post_path(first_user.id, first_post.id))
+    end
+    it 'should have a button for pagination' do
+      expect(page).to have_button('More Posts')
+    end
   end
 end
