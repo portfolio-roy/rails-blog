@@ -8,14 +8,9 @@ RSpec.describe 'Users', type: :feature do
 
   before(:example) do
     first_user = User.create(name: 'Jerry', photo: 'https://unsplash.com/photos/iFgRcqHznqg',
-        bio: 'Teacher from Mexico.', posts_counter: 0)
-    second_user = User.create(name: 'tom', photo: 'https://unsplash.com/photos/iFgRcqHznqg',
-            bio: 'Teacher from Mexico.', posts_counter: 0)
-    first_post = Post.create(title: 'First Post', text: 'This is my first post', author_id: first_user.id,
+                             bio: 'Teacher from Mexico.', posts_counter: 0)
+    Post.create(title: 'First Post', text: 'This is my first post', author_id: first_user.id,
                 comments_counter: 0, likes_counter: 0)
-
-    first_comment = Comment.create(post: first_post, author: first_user, text: 'This is my first comment')
-    like = Like.create(post: first_post, author: first_user)
     visit users_path
   end
 
