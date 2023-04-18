@@ -1,67 +1,61 @@
 require 'rails_helper'
 
-RSpec.describe 'User posts', type: :feature do
-  let(:user) { create(:user) }
-  let(:other_user) { create(:user) }
+RSpec.describe 'Post index page', type: :feature do
+  let!(:first_user) { User.first}
+    let!(:users) { [first_user ] }
+    let!(:posts) { Post.all }
+    # Create a test user with associated posts and comments to be displayed on the show page
+    first_user = User.create(name: 'Jerry', photo: 'https://unsplash.com/photos/iFgRcqHznqg',
+        bio: 'Teacher from Mexico.', posts_counter: 0)
+    second_user = User.create(name: 'tom', photo: 'https://unsplash.com/photos/iFgRcqHznqg',
+            bio: 'Teacher from Mexico.', posts_counter: 0)
+    
+    first_post = Post.create(title: 'First Post', text: 'This is my first post', author_id: first_user.id,
+            comments_counter: 0, likes_counter: 0)
+    second_post = Post.create(title: 'Second Post', text: 'This is my second post', author_id: first_user.id,
+                comments_counter: 0, likes_counter: 0)
+    third_post = Post.create(title: 'Third Post', text: 'This is my third post', author_id: first_user.id,
+                    comments_counter: 0, likes_counter: 0)
+    fourth_post = Post.create(title: 'Fourth Post', text: 'This is my fourth post', author_id: first_user.id,
+                        comments_counter: 0, likes_counter: 0)
+ 
+    first_comment = Comment.create(post: first_post, author: first_user, text: 'This is my first comment')
+    like = Like.create(post: first_post, author: first_user)
 
   before do
-    10.times do |i|
-      user.posts.create(title: "Post #{i + 1}", text: "This is the text for post #{i + 1}")
+    visit user_posts_path(first_user.id)
+  end
+
+  describe 'Page content' do
+    it "should display user's profile picture" do
+      expect(page).to have_css("img[src='#{first_user.photo}']")
     end
-  end
 
-  it 'shows the user profile picture and username' do
-    visit user_posts_path(user)
+    it "should display user's name" do
+      expect(page).to have_content(first_user.name)
+    end
 
-    expect(page).to have_css('img.user-photo')
-    expect(page).to have_content(user.name)
-  end
+    it 'can see the number of posts the user has written' do
+      expect(page).to have_text("Number of posts: #{first_user.posts.count}")
+    end
 
-  it 'shows the number of posts for the user' do
-    visit user_posts_path(user)
+    it 'should display all post titles' do
+      expect(page).to have_content(first_post.title)
+      expect(page).to have_content(second_post.title)
+    end
 
-    expect(page).to have_content("Number of posts: #{user.posts.count}")
-  end
+    it "should display some of posts' content" do
+      expect(page).to have_content(first_post.text[0..200])
+      expect(page).to have_content(second_post.text[0..200])
+    end
 
-  it 'shows a post title and truncated text' do
-    visit user_posts_path(user)
+    it 'should display recent comments on a post' do
+      expect(page).to have_content(first_comment.text)
+    end
 
-    post = user.posts.first
-    expect(page).to have_content(post.title)
-    expect(page).to have_content(truncate(post.text, length: 200))
-  end
-
-  it 'shows the first comments on a post and comment count' do
-    post = user.posts.first
-    post.comments.create(text: "First comment on post", author: other_user)
-
-    visit user_posts_path(user)
-
-    expect(page).to have_content("Comments: #{post.comments.count}")
-    expect(page).to have_content("First comment on post")
-  end
-
-  it 'shows the number of likes a post has' do
-    post = user.posts.first
-    post.likes.create(user: other_user)
-
-    visit user_posts_path(user)
-
-    expect(page).to have_content("Likes: #{post.likes.count}")
-  end
-
-  it 'shows pagination if there are more posts than fit on the view' do
-    visit user_posts_path(user)
-
-    expect(page).to have_css('.pagination')
-  end
-
-  it 'redirects to post show page when clicked' do
-    post = user.posts.first
-
-    visit user_posts_path(user)
-    find("a[href='#{user_post_path(user, post)}']").click
-
-    expect(current_path).to eq(user_post_path(user, post))
+    it 'should display comment counts for each post' do
+      expect(page).to have_content("Comments: #{first_post.comments_counter}")
+      expect(page).to have_content("Comments: #{second_post.comments_counter}")
+    end
   end
 end

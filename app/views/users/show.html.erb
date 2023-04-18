@@ -15,11 +15,12 @@
         <hr>
         <section class="posts container">
             <h3>Recent Posts</h3>
+            <div class="posts">
             <% @user.most_recent_posts.each do |post| %>
             
                 <div class="post">
                     <div class="post-content">
-                        <h4><a href="<%=@user.id%>/posts/<%=post.id%>" class="post-link"><%= post.title %></a></h4>
+                        <h4><a href="<%=@user.id%>/posts/<%=post.id%>"><%= post.title %></a></h4>
                         <p><%= truncate(post.text, length: 200) %></p>
                     </div>
                     <footer class="post-footer">
@@ -30,7 +31,7 @@
                 
                 
             <% end %>
-            
+            </div>
             <a href="<%=@user.id%>/posts/" class="button">View all posts</a>
         </section>
     </div>

@@ -19,13 +19,13 @@
           <h4><a href="/users/<%=@user.id%>/posts/<%=post.id%>"><%= post.title %></a></h4>
           
           <p><%= truncate(post.text, length: 200) %></p>
-        </div>
-        <footer class="post-footer">
+          <footer class="post-footer">
           <span class="comment-count">Comments: <%= post.comments_counter %></span>,
           <span class="like-count">Likes: <%= post.likes_counter %></span>
         </footer>
-      </div>
-      <div class="comments">
+        </div>
+        
+        <div class="comments">
         <h5>Comments</h5>
         <% post.comments.each do |comment| %>
           <div id="single-comment"> 
@@ -33,6 +33,8 @@
           </div>
         <% end %>
       </div>
+      </div>
+      
   <% end %>
 </section>
 
