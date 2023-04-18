@@ -10,33 +10,35 @@
         <hr>
         
         <section class="posts container">
-            <h3>All Posts from <%= @user.name %></h3>
-            <% @user.posts.each do |post| %>
-            
-            <a href="/users/<%=@user.id%>/posts/<%=post.id%>" class="post-link">
-                <div class="post">
-                    <div class="post-content">
-                        <h4><%= post.title %></h4>
-                        <p><%= truncate(post.text, length: 200) %></p>
-                    </div>
-                    <footer class="post-footer">
-                    <span class="comment-count">Comments: <%= post.comments_counter %></span>, <span class="like-count">Likes: <%= post.likes_counter %></span>
-                    </footer>
-                    </div>
-                    <div class="comments">
-                    <h5>Comments</h5>
-                    <% post.most_recent_comments.each do |comment| %>
-                        <div  id="single-comment"> 
-                            <span> <%= comment.author.name %> : <%= comment.text %></span>
-                        </div>
-                    <% end %>
-                </div>
-                </a>
-                
-            
-            <% end %>
-            
-        </section>
+  <h3>All Posts from <%= @user.name %></h3>
+  <% @user.posts.includes(comments:[:author]).each do |post| %>
+    
+      <div class="post">
+        <div class="post-content">
+        
+          <h4><a href="/users/<%=@user.id%>/posts/<%=post.id%>"><%= post.title %></a></h4>
+          
+          <p><%= truncate(post.text, length: 200) %></p>
+          <footer class="post-footer">
+          <span class="comment-count">Comments: <%= post.comments_counter %></span>,
+          <span class="like-count">Likes: <%= post.likes_counter %></span>
+        </footer>
+        </div>
+        
+        <div class="comments">
+        <h5>Comments</h5>
+        <% post.comments.each do |comment| %>
+          <div id="single-comment"> 
+            <span> <%= comment.author.name %> : <%= comment.text %></span>
+          </div>
+        <% end %>
+      </div>
+      </div>
+      <button>More Posts</button>
+  <% end %>
+</section>
+
+
     </div>
 
 </main>
