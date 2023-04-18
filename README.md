@@ -139,14 +139,20 @@ It's still in CLI phase. To run the project in command line, first enter rails c
 - Twitter: [@royutsargo](https://twitter.com/royutsargo)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/utsargo-roy/)
 
+👤 **IBRAHIM DIABY MOHAMED**
+
+- GitHub: [@Dmambo](https://github.com/Dmambo)
+- Twitter: [@kingibro345](https://twitter.com/kingibro345)
+- LinkedIn: [Dmambo](https://linkedin.com/in/Dmambo)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FUTURE FEATURES -->
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **Add controllers**
-- [ ] **Add web UI**
+- [ ] **Add user authentication**
+- [ ] **Add API endpoints**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
