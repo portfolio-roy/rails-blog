@@ -1,5 +1,11 @@
 <main>
 <div class="users container">
+<!--
+<% if user_signed_in? %>
+  <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+<% else %>
+  <%= link_to "Sign In", new_user_session_path %>
+<% end %> -->
     <h1>Users</h1>
     <% @users.each do |user| %>
         <div class="user">

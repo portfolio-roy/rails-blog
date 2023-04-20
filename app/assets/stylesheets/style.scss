@@ -187,3 +187,16 @@ hr {
     align-self: center;
   }
 }
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  input,
+  button,
+  textarea {
+    width: 100%;
+  }
+  input[type="checkbox"] {
+    width: auto;
+  }
+}
