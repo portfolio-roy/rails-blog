@@ -15,7 +15,7 @@ class User < ApplicationRecord
     posts.order(created_at: :desc).limit(3)
   end
 
-  def after_confirmation_path_for(resource_name, resource)
+  def after_confirmation_path_for(_resource_name, _resource)
     root_path
   end
 end
