@@ -1,5 +1,12 @@
 <main>
     <div class="single-user container">
+    <!--
+<% if user_signed_in? %>
+  <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+<% else %>
+  <%= link_to "Sign In", new_user_session_path %>
+<% end %> -->
+
         <section class="user">
             <img src=<%= @user.photo %> alt="User Photo" class="user-photo">
             <div class="user-detail">
