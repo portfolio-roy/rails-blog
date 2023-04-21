@@ -58,10 +58,11 @@
 
 ### Key Features <a name="key-features"></a>
 
-- **Add User**
-- **Add Post**
-- **Add Comment**
+- **Add/edit User**
+- **Add/delete Post**
+- **Add/delete Comment**
 - **Add Like**
+- **Call API**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -81,7 +82,7 @@ To get a local copy up and running, follow these steps.
 
 ### Prerequisites
 
-In order to run this project you need to have Rails installed on you computer.
+In order to run this project you need to have Rails and postgress installed on you computer.
 
 ### Setup
 
@@ -94,38 +95,78 @@ Clone this repository to your desired folder:
 
 ### Install
 
-Install this project with:
+- Install this project with:
 
 ```sh
   bundle install
 ```
 
+- Change the postgress password with your own in `config/database.yml`
+- Then run:
+
+```sh
+  rails db:create db:migrate
+```
+
 ### Usage
 
-It's still in CLI phase. To run the project in command line, first enter rails console by:
+Run the development server locally by:
 
 ```sh
-  rails c
+  rails s
 ```
 
-**Add User example**
+**User sign up**
 
-```sh
-  first_user = User.create(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.')
-   second_user = User.create(name: 'Lilly', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Poland.')
-```
+- Go to the following link:
+  https://localhost:3000/users/sign_up
+- Fill up the form and submit
+- Confirm the email address
 
-**Add Post example**
+**User login**
 
-```sh
-  first_post = Post.create(author: first_user, title: 'Hello', text: 'This is my first post')
-```
+- Go to the following link:
+  https://localhost:3000/users/sign_in
+- Fill up the form and submit
 
-**Add Comment example**
+**User edit**
 
-```sh
-  Comment.create(post: first_post, author: second_user, text: 'Hi Tom!' )
-```
+- Go to the following link:
+  https://localhost:3000/users/edit
+- Fill up the form and submit
+
+**Add a Post**
+
+- Go to https://localhost:3000/
+- Click on your username.
+- The URL in you browser will be like `https://localhost:3000/users/<your user_id>`
+- Append `/posts/new`. Now it will look like `https://localhost:3000/users/<your user_id>`. Hit enter.
+- Fill up the form and submit
+
+**Delete Post**
+
+- Navigate to a specific post.
+- Click on the delete button underneath the post's body.
+
+**Add a Comment**
+
+- Go to a specific post by clicking on it's title.
+- Click on the comment button.
+- Fill up the comment form and submit
+
+**Like a post**
+
+- Go to a specific post by clicking on it's title.
+- Click on the like button.
+
+**Sign out**
+
+- Visit `https://localhost:3000/users/sign_out`
+
+**API Endpooints**
+
+- All posts from a user: `http://localhost:3000/users/<user.id>/posts.json`
+- All comments of a post: `http://localhost:3000/users/<user.id>/posts/<post.id>/comments.json`
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -151,8 +192,8 @@ It's still in CLI phase. To run the project in command line, first enter rails c
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **Add user authentication**
-- [ ] **Add API endpoints**
+- [ ] **Add Registration/Login links in the page**
+- [ ] **Add `Create post` link in the user detail page**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
