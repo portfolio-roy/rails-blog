@@ -1,0 +1,10 @@
+<div  class="single-comment">
+    <span> <%= comment.author.name %> : <%= comment.text %></span>
+    <% if can? :destroy , comment %>
+        <%= form_with model: comment, method: :delete, local: true, 
+            url: "/users/#{@post.author.id}/posts/#{@post.id}/comments/#{comment.id}/",
+            html: {class: "delete-btn"} do |f| %>
+                <%= f.submit "Delete", class: "button" %>
+            <% end %>
+  <% end %>
+</div>
