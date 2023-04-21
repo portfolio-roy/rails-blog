@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
       format.json { render json: @comments }
     end
   end
+
   def new
     @comment = Comment.new
     @post = Post.find(params[:post_id])
@@ -13,19 +14,19 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!, only: [:create]
   def create
     @user = current_user
-  @post = Post.find(params[:post_id])
-  @comment = Comment.new(author_id: @user.id, text: params[:comment][:text], post_id: @post.id) # assign post_id
-  respond_to do |format|
-    if @comment.save # check if the comment is saved successfully
-      flash[:success] = 'Comment was successfully created.'
-      format.html { redirect_to "/users/#{@user.id}/posts/#{@post.id}" }
-      format.json { render json: @comment, status: :created }
-    else
-      flash[:error] = 'Something went wrong.'
-      render :new # render the new template again with error messages
-      format.json { render json: { error: 'Error: Comment could not be saved' }, status: :unprocessable_entity }
+    @post = Post.find(params[:post_id])
+    @comment = Comment.new(author_id: @user.id, text: params[:comment][:text], post_id: @post.id) # assign post_id
+    respond_to do |format|
+      if @comment.save # check if the comment is saved successfully
+        flash[:success] = 'Comment was successfully created.'
+        format.html { redirect_to "/users/#{@user.id}/posts/#{@post.id}" }
+        format.json { render json: @comment, status: :created }
+      else
+        flash[:error] = 'Something went wrong.'
+        render :new # render the new template again with error messages
+        format.json { render json: { error: 'Error: Comment could not be saved' }, status: :unprocessable_entity }
+      end
     end
-  end
   end
 
   def destroy
