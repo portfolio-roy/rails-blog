@@ -16,5 +16,19 @@ class CommentsController < ApplicationController
       render :new # render the new template again with error messages
     end
   end
-  
+  def destroy
+    comment = Comment.find(params[:id])
+    post = comment.post
+    respond_to do |format|
+      if comment.destroy
+        # Successfully deleted the record
+        flash[:success] = "Comment deleted successfully"
+        post.decrement!(:comments_counter)
+      else
+        # Failed to delete the record
+        flash.now[:error] = 'Error: Comment could not be deleted'
+      end
+      format.html { redirect_to "/users/#{current_user.id}/posts/#{params[:post_id]}" }
+    end
+  end
 end
