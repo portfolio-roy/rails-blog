@@ -22,4 +22,6 @@ class PostsController < ApplicationController
     @post.save
     redirect_to user_posts_path(@user)
   end
+
+ 
 end

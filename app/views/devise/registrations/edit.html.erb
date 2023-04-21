@@ -32,6 +32,21 @@
   <div class="field">
     <%= f.text_field :photo, placeholder: "Enter your photo link"%>
   </div>
+  <% if current_user.is?(:admin) %>
+    <div class="field">
+      <%= f.label :role %>
+      <div class="radio-buttons">
+        <div class="radio-single">
+        <%= f.radio_button :role, "user", id: "user" %>
+        <%= f.label :user, for: "user" %>
+        </div>
+        <div class="radio-single">
+        <%= f.radio_button :role, "admin", id: "admin" %>
+        <%= f.label :admin, for: "admin" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
   <div class="actions">
     <%= f.submit "Update" %>
   </div>

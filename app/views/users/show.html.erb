@@ -32,10 +32,7 @@
                     </div>
                     <footer class="post-footer">
                     <span class="comment-count">Comments: <%= post.comments_counter %></span>, <span class="like-count">Likes: <%= post.likes_counter %></span>
-                    <% if can?(:destroy, post) %>
-  <%= link_to "Delete", post_path(post), method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %>
-
+                   
                     </footer>
                     </div>
                

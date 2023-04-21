@@ -16,4 +16,5 @@ class CommentsController < ApplicationController
       render :new # render the new template again with error messages
     end
   end
+  
 end
