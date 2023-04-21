@@ -129,6 +129,12 @@ Run the development server locally by:
   https://localhost:3000/users/sign_in
 - Fill up the form and submit
 
+**User edit**
+
+- Go to the following link:
+  https://localhost:3000/users/edit
+- Fill up the form and submit
+
 **Add a Post**
 
 - Go to https://localhost:3000/
@@ -152,6 +158,10 @@ Run the development server locally by:
 
 - Go to a specific post by clicking on it's title.
 - Click on the like button.
+
+**Sign out**
+
+- Visit `https://localhost:3000/users/sign_out`
 
 **API Endpooints**
 
