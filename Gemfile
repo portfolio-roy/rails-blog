@@ -74,6 +74,7 @@ group :test do
   gem 'webdrivers'
 end
 
-gem 'devise'
-gem 'letter_opener'
 gem 'cancancan'
+gem 'devise'
+
+gem 'letter_opener'

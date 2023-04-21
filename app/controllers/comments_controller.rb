@@ -16,13 +16,14 @@ class CommentsController < ApplicationController
       render :new # render the new template again with error messages
     end
   end
+
   def destroy
     comment = Comment.find(params[:id])
     post = comment.post
     respond_to do |format|
       if comment.destroy
         # Successfully deleted the record
-        flash[:success] = "Comment deleted successfully"
+        flash[:success] = 'Comment deleted successfully'
         post.decrement!(:comments_counter)
       else
         # Failed to delete the record

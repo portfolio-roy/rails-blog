@@ -28,11 +28,11 @@ class PostsController < ApplicationController
     Post.find(params[:id]).comments.destroy_all
     Post.find(params[:id]).likes.destroy_all
     user = post.author
-    respond_to do |format|    
+    respond_to do |format|
       if post.destroy
         user.decrement!(:posts_counter)
         # Successfully deleted the record
-        flash[:success] = "Post deleted successfully"
+        flash[:success] = 'Post deleted successfully'
         format.html { redirect_to "/users/#{current_user.id}/posts" }
       else
         # Failed to delete the record
