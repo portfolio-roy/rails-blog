@@ -3,6 +3,14 @@ class Comment < ApplicationRecord
   belongs_to :post
 
   validates :text, presence: true, length: { maximum: 1000 }
+  def as_json(_options = {})
+    {
+      id:,
+      text:,
+      author_id:,
+      post_id:
+    }
+  end
   after_save :update_comments_counter
 
   private
